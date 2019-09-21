@@ -1,0 +1,27 @@
+{
+  "name": "pdsw-models",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linhares894/pdsw-models.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linhares894/pdsw-models/issues"
+  },
+  "homepage": "https://github.com/linhares894/pdsw-models#readme",
+  "dependencies": {
+    "pg": "^7.12.1",
+    "sequelize": "^5.18.4"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^5.5.1"
+  }
+}
