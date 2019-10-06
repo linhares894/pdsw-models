@@ -2,7 +2,7 @@ const { Product } = require('../lib/models')
 
 describe('Product tests', () => {
   test('create product test', async () => {
-    const product = await Product.create({
+    let product = await Product.create({
       cod: '123',
       title: 'something',
       description: 'something',
@@ -13,6 +13,16 @@ describe('Product tests', () => {
       weight: '120',
       pages: '40'
     })
+
+    console.log(product.id)
+    console.log(product.cod)
+
+    product = await product.update({
+      cod: '456'
+    })
+
+    console.log(product.id)
+    console.log(product.cod)
 
     expect(product.author).toBe('someone')
   })
