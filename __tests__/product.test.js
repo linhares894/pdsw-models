@@ -5,7 +5,7 @@ describe('Product tests', () => {
   beforeEach(async () => {
   })
   afterEach(async () => {
-    await db.sequelize.connectionManager.close()
+    // await db.sequelize.connectionManager.close()
   })
   test('create product test', async () => {
     let product = await Product.create({
@@ -31,15 +31,13 @@ describe('Product tests', () => {
     expect(product.author).toBe('someone')
   })
 
-  // test('update product test', async () => {
-    
-    
-  //   product = await product.update({
-  //     cod: '456'
-  //   })
-
-  //   expect(product.cod).toBe('456')
-  // })
+  test('update product test', async () => {
+    product = (await Product.findAll({ where: { id: 1 }}))[0]
+    product = await product.update({
+      cod: '456'
+    })
+    expect(product.cod).toBe('456')
+  })
 
 
 

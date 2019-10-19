@@ -7,11 +7,9 @@ describe('Client tests', () => {
   beforeEach(async () => {
   })
   afterEach(async () => {
-    await db.sequelize.connectionManager.close()
   })
   
   test('create client test', async () => {
-    // console.log(Sequelize)
     try {
       let client = (await Client.create({
         email: '123',
