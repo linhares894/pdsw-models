@@ -3,14 +3,20 @@ const Address = require('../lib/models/Address')
 const db = require('../lib/database/index')
 
 
-describe('Client tests', () => {
-  beforeEach(async () => {
-  })
-  afterEach(async () => {
-  })
-  
+describe('Address tests', () => { 
   test('create address test', async () => {
     try {   
+      let client = (await Client.create({
+        email: 'azul@gmail.com',
+        password: '111',
+        name: 'something',
+        gender: 'something',
+        cpf: '01234567890',
+        rg: '44-333-999-3',
+        dob: '2019-10-19T14:07:52.537Z',
+      }))
+      expect(client.get().email).toBe('azul@gmail.com')
+      
       let address = await Address.create({
         country: 'Brasil',
         state: 'SP',
@@ -21,7 +27,7 @@ describe('Client tests', () => {
         lng: '-23.00000',
         landmark: 'casa',
         zip_code: '04909-200',
-        clientId: 1,
+        clientId: client.id,
       })
 
       address = await Address.create({
@@ -34,13 +40,14 @@ describe('Client tests', () => {
         lng: '-23.00000',
         landmark: 'casa',
         zip_code: '04909-200',
-        clientId: 1,
+        clientId: client.id,
       })
 
       let clients = await Client.findAll({
-        include: { association: 'addresses'}
+        include: { association: 'addresses'},
+        where: {id: client.id}
       })
-      expect(clients[0].get().email).toBe('123')
+      expect(clients[0].get().addresses.length).toBe(2)
     } catch (err) {
       console.log(err)
     }
