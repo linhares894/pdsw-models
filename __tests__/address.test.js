@@ -1,6 +1,6 @@
-const { Client } = require('../lib/models')
-const { Address } = require('../lib/models')
-const db = require('../lib/models/index')
+const Client = require('../lib/models/Client')
+const Address = require('../lib/models/Address')
+const db = require('../lib/database/index')
 
 
 describe('Client tests', () => {
@@ -38,10 +38,7 @@ describe('Client tests', () => {
       })
 
       let clients = await Client.findAll({
-        include: [{
-          model: Address,
-          where: { clientId: 1 }
-        }]
+        include: { association: 'addresses'}
       })
       expect(clients[0].get().email).toBe('123')
     } catch (err) {
@@ -51,10 +48,16 @@ describe('Client tests', () => {
 
   test('Add current address to client', async () => {
     try {
-      let client = (await Client.findAll({ where: { id: 1 }}))[0]
-      await client.update({current_address: 1})
-      client = (await Client.findAll({ where: { id: 1 }}))[0]
-      expect(client.get().current_address).toBe(1)
+      let client = (await Client.findAll({
+        include: { association: 'addresses'},
+        where: { id: 1 }
+      }))[0]
+      await client.update({currentAddress: 1})
+      client = (await Client.findAll({
+        include: { association: 'addresses'},
+        where: { id: 1 }
+      }))[0]
+      expect(client.get().currentAddress).toBe(1)
     } catch (err) {
       console.log(err)
     }
