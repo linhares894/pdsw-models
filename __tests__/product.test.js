@@ -1,5 +1,5 @@
-const { Product } = require('../lib/models')
-const db = require('../lib/models/index')
+const Product = require('../lib/models/Product')
+const db = require('../lib/database/index')
 
 describe('Product tests', () => {
   beforeEach(async () => {
@@ -39,21 +39,18 @@ describe('Product tests', () => {
     expect(product.cod).toBe('456')
   })
 
-
-
-  // test('invalid create product test', async () => {
-  //   await Product.create({
-  //     cod: '123',
-  //     title: 'something',
-  //     description: 'something',
-  //     publisher: 'someone',
-  //     edition: '1',
-  //     isbn: '20033',
-  //     weight: '120',
-  //     pages: '40'
-  //   }).catch(err => {
-  //     expect(err).toBe() throw [SequelizeUniqueConstraintError: Validation error]
-  //   })
-
-  // })
+  test('invalid create product test', async () => {
+    await Product.create({
+      cod: '123',
+      title: 'something',
+      description: 'something',
+      publisher: 'someone',
+      edition: '1',
+      isbn: '20033',
+      weight: '120',
+      pages: '40'
+    }).catch(err => {
+      expect(err).toBeTruthy()
+    })
+  })
 })
