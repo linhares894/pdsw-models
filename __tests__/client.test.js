@@ -11,8 +11,7 @@ describe('Client tests', () => {
         name: 'something',
         gender: 'something',
         cpf: '01234567890',
-        rg: '44-333-999-3',
-        dob: '2019-10-19T14:07:52.537Z',
+        rg: '44-333-999-3'
       }))
       expect(client.get().email).toBe('123')
     } catch (err) {
@@ -29,8 +28,7 @@ describe('Client tests', () => {
         name: 'something',
         gender: 'something',
         cpf: '01234567890',
-        rg: '44-333-999-3',
-        dob: '2019-10-19T14:07:52.537Z',
+        rg: '44-333-999-3'
       }))
       expect(client.get().email).toBe('1234')
     } catch (err) {

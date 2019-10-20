@@ -12,8 +12,7 @@ describe('Address tests', () => {
         name: 'something',
         gender: 'something',
         cpf: '01234567890',
-        rg: '44-333-999-3',
-        dob: '2019-10-19T14:07:52.537Z',
+        rg: '44-333-999-3'
       }))
       expect(client.get().email).toBe('azul@gmail.com')
       
@@ -59,7 +58,9 @@ describe('Address tests', () => {
         include: { association: 'addresses'},
         where: { id: 1 }
       }))[0]
-      await client.update({currentAddress: 1})
+      console.log(client.currentAddress)
+      client = await client.update({currentAddress: 1})
+      console.log(client.currentAddress)
       client = (await Client.findAll({
         include: { association: 'addresses'},
         where: { id: 1 }

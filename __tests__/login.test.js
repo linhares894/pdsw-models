@@ -11,10 +11,18 @@ describe('Client tests', () => {
   test('create client test', async () => {
 
     try {
-      // const client = (await Client.findAll({
-      //   where: { email: 'azul@gmail.com'}
-      // }))[0]
-      // expect(await bcrypt.compareSync('111', client.password)).toBeTruthy()
+      let client = (await Client.create({
+        email: 'new@gmail.com',
+        password: '111',
+        name: 'something',
+        gender: 'something',
+        cpf: '01234567890',
+        rg: '44-333-999-3'
+      }))
+      client = (await Client.findAll({
+        where: { email: 'new@gmail.com'}
+      }))[0]
+      expect(await bcrypt.compareSync('111', client.password)).toBeTruthy()
     } catch (err) {
       console.log(err)
       throw err
