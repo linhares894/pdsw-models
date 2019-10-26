@@ -3,14 +3,19 @@ const Address = require('../lib/models/Address')
 const db = require('../lib/database/index')
 
 
-describe('Client tests', () => {
-  beforeEach(async () => {
-  })
-  afterEach(async () => {
-  })
-  
+describe('Address tests', () => { 
   test('create address test', async () => {
     try {   
+      let client = (await Client.create({
+        email: 'azul@gmail.com',
+        password: '111',
+        name: 'something',
+        gender: 'something',
+        cpf: '01234567890',
+        rg: '44-333-999-3'
+      }))
+      expect(client.get().email).toBe('azul@gmail.com')
+      
       let address = await Address.create({
         country: 'Brasil',
         state: 'SP',
@@ -21,7 +26,7 @@ describe('Client tests', () => {
         lng: '-23.00000',
         landmark: 'casa',
         zip_code: '04909-200',
-        clientId: 1,
+        clientId: client.id,
       })
 
       address = await Address.create({
@@ -34,13 +39,14 @@ describe('Client tests', () => {
         lng: '-23.00000',
         landmark: 'casa',
         zip_code: '04909-200',
-        clientId: 1,
+        clientId: client.id,
       })
 
       let clients = await Client.findAll({
-        include: { association: 'addresses'}
+        include: { association: 'addresses'},
+        where: {id: client.id}
       })
-      expect(clients[0].get().email).toBe('123')
+      expect(clients[0].get().addresses.length).toBe(2)
     } catch (err) {
       console.log(err)
     }
@@ -52,7 +58,7 @@ describe('Client tests', () => {
         include: { association: 'addresses'},
         where: { id: 1 }
       }))[0]
-      await client.update({currentAddress: 1})
+      client = await client.update({currentAddress: 1})
       client = (await Client.findAll({
         include: { association: 'addresses'},
         where: { id: 1 }

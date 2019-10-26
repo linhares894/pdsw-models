@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
-    "pretest": "NODE_ENV=test sequelize db:migrate",
+    "pretest": "NODE_ENV=test sequelize db:migrate:undo:all && sequelize db:migrate",
     "test": "NODE_ENV=test jest ",
     "posttest": "NODE_ENV=test sequelize db:migrate:undo:all"
   },
@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/linhares894/pdsw-models#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "dotenv": "^8.1.0",
     "jest": "^24.9.0",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^7.12.1",
     "sequelize": "^5.18.4"
   },
