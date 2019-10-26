@@ -58,9 +58,7 @@ describe('Address tests', () => {
         include: { association: 'addresses'},
         where: { id: 1 }
       }))[0]
-      console.log(client.currentAddress)
       client = await client.update({currentAddress: 1})
-      console.log(client.currentAddress)
       client = (await Client.findAll({
         include: { association: 'addresses'},
         where: { id: 1 }
