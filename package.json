@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/linhares894/pdsw-models#readme",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.1.0",
     "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1",

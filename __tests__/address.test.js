@@ -1,7 +1,6 @@
+const db = require('../lib/database/index')
 const Client = require('../lib/models/Client')
 const Address = require('../lib/models/Address')
-const db = require('../lib/database/index')
-
 
 describe('Address tests', () => { 
   test('create address test', async () => {

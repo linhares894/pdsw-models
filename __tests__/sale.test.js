@@ -1,3 +1,4 @@
+const db = require('../lib/database/index')
 const Client = require('../lib/models/Client')
 const Sale = require('../lib/models/Sale')
 const Product = require('../lib/models/Product')
