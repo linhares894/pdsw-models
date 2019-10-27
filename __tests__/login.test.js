@@ -1,6 +1,6 @@
 const db = require('../lib/database/index')
 const Client = require('../lib/models/Client')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 describe('Client tests', () => {
   beforeEach(async () => {

@@ -1,5 +1,5 @@
-const Product = require('../lib/models/Product')
 const db = require('../lib/database/index')
+const Product = require('../lib/models/Product')
 
 describe('Product tests', () => {
   beforeEach(async () => {
