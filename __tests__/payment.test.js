@@ -6,7 +6,7 @@ const Address = require('../lib/models/Address')
 const Payment = require('../lib/models/Payment')
 const PaymentMethod = require('../lib/models/PaymentMethod')
 
-describe('Sale tests', () => {
+describe('Payment tests', () => {
   test('create sale test', async () => {
     let product = await Product.create({
       cod: '1',
@@ -42,7 +42,7 @@ describe('Sale tests', () => {
 
     try {
       let client = (await Client.create({
-        email: 'aabbcc',
+        email: '123@h.com',
         name: 'linhares',
         password: '123',
         gender: 'm'
@@ -61,19 +61,6 @@ describe('Sale tests', () => {
         clientId: client.id,
       })
 
-      const saleItems = [
-        {
-          productId: product.id,
-          quantity: 5,
-          price: 40,
-        },
-        {
-          productId: product1.id,
-          quantity: 5,
-          price: 20,
-        }
-      ]
-
       let paymentMethod = await PaymentMethod.create({
         cardNumber: 4444555566667777,
         expiresAt: '12/24',
@@ -87,6 +74,19 @@ describe('Sale tests', () => {
         paymentMethodId: paymentMethod.id,
         interestRate: 20
       }
+
+      const saleItems = [
+        {
+          productId: product.id,
+          quantity: 5,
+          price: 40,
+        },
+        {
+          productId: product1.id,
+          quantity: 5,
+          price: 20,
+        }
+      ]
 
       let sale = {
         clientId: client.id,
@@ -107,12 +107,15 @@ describe('Sale tests', () => {
 
   test('Query client with sale', async () => {
     let res = (await Client.findAll({
-      where: {email: 'aabbcc'},
-      include: { 
-        association: 'sales',
-        include: { association: 'saleItems'},
-      }
+      where: {email: '123@h.com'},
+      include: [{ all: true, nested: true }]
     }))[0]
+    console.log(JSON.parse(JSON.stringify(res.sales[0])))
     expect(res.sales[0].saleItems.length).toBe(2)
+
+    res = (await Sale.findByPk(1, {
+      include: [{ all: true, nested: true }]
+    }))
+    console.log(JSON.parse(JSON.stringify(res)))
   })
 })
