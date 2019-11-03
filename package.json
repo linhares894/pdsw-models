@@ -25,6 +25,7 @@
     "dotenv": "^8.1.0",
     "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1",
+    "object-hash": "^2.0.0",
     "pg": "^7.12.1",
     "sequelize": "^5.18.4"
   },
