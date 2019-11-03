@@ -80,6 +80,7 @@ describe('Sale tests', () => {
         owner: 'linhares',
         cvc: 878,
         clientId: client.id,
+        stripe: 'visa'
       })
 
       let payment = {

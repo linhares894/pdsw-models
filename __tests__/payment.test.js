@@ -67,6 +67,7 @@ describe('Payment tests', () => {
         owner: 'linhares',
         cvc: 878,
         clientId: client.id,
+        stripe: 'visa'
       })
 
       let payment = {
@@ -110,7 +111,7 @@ describe('Payment tests', () => {
       where: {email: '123@h.com'},
       include: [{ all: true, nested: true }]
     }))[0]
-    console.log(JSON.parse(JSON.stringify(res.sales[0])))
+    console.log(JSON.parse(JSON.stringify(res)))
     expect(res.sales[0].saleItems.length).toBe(2)
 
     res = (await Sale.findByPk(1, {
