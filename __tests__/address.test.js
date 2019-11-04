@@ -22,7 +22,6 @@ describe('Address tests', () => {
         number: '222',
         street: 'Av Jaguare',
         lat: '-22.00000',
-        lng: '-23.00000',
         landmark: 'casa',
         zip_code: '04909-200',
         clientId: client.id,

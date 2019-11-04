@@ -74,27 +74,26 @@ describe('Sale tests', () => {
         }
       ]
 
-      let paymentMethod = await PaymentMethod.create({
-        cardNumber: 4444555566667777,
-        expiresAt: '12/24',
-        owner: 'linhares',
-        cvc: 878,
-        clientId: client.id,
-        stripe: 'visa'
-      })
+      // let paymentMethod = await PaymentMethod.create({
+      //   cardNumber: 4444555566667777,
+      //   expiresAt: '12/24',
+      //   owner: 'linhares',
+      //   cvc: 878,
+      //   clientId: client.id,
+      //   stripe: 'visa'
+      // })
 
-      let payment = {
-        installments: 12,
-        paymentMethodId: paymentMethod.id,
-        interestRate: 20
-      }
+      // let payment = {
+      //   installments: 12,
+      //   paymentMethodId: paymentMethod.id,
+      //   interestRate: 20
+      // }
 
       let sale = {
         clientId: client.id,
         totalPrice: 2000,
         saleItems,
-        addressId: address.id,
-        payment
+        addressId: address.id
       }
 
       sale = await Sale.save(sale)
